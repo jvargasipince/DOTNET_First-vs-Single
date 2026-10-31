@@ -1,0 +1,35 @@
+@model _DOTNET____First_vs_Single.Models.Product
+
+@{
+    ViewData["Title"] = $"Detalle: {Model.Name}";
+}
+
+<div class="mb-4">
+    <a asp-action="Index" class="btn btn-link px-0">&larr; Volver al catálogo</a>
+    <h1 class="display-6">Detalle del producto</h1>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-start mb-3">
+            <div>
+                <span class="badge text-bg-secondary mb-2">@Model.Category</span>
+                <h2 class="card-title">@Model.Name</h2>
+            </div>
+            <span class="badge text-bg-primary fs-6">Id: @Model.Id</span>
+        </div>
+
+        <p class="card-text">@Model.Description</p>
+        <p class="fs-4 fw-bold">@Model.Price.ToString("C")</p>
+
+        <div class="alert alert-info mb-0">
+            Este detalle se obtuvo con <code>@ViewBag.LookupMethod</code>.
+            <code>First()</code> devuelve el primer resultado; <code>Single()</code> exige que exista exactamente uno.
+        </div>
+    </div>
+</div>
+
+<div class="mt-4 d-flex gap-2">
+    <a asp-action="DetailsFirst" asp-route-id="@Model.Id" class="btn btn-outline-primary">Probar First()</a>
+    <a asp-action="DetailsSingle" asp-route-id="@Model.Id" class="btn btn-outline-success">Probar Single()</a>
+</div>
